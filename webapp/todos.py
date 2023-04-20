@@ -13,12 +13,15 @@ todos = Blueprint('todos', __name__)
 @login_required
 def home():
     if request.method == 'POST': 
-        todo = request.form.get('todo')#Gets the todo from the HTML 
+        title = request.form.get('title')#Gets the todo from the HTML 
+        description = request.form.get('description')#Gets the todo from the HTML 
 
-        if len(todo) < 1:
-            flash('Todo is too short!', category='warning') 
+        if len(title) < 1:
+            flash('Title is too short!', category='warning') 
+        elif len(description) < 1:
+            flash('Description is too short!', category='warning') 
         else:
-            new_todo = todo(data=todo, user_id=current_user.id)  #providing the schema for the note 
+            new_todo = Todo(title=title, description=description, user_id=current_user.id)  #providing the schema for the note 
             db.session.add(new_todo) #adding the note to the database 
             db.session.commit()
             flash('Todo added!', category='success')
@@ -29,12 +32,12 @@ def home():
 @login_required
 def delete_todo():
     data = json.loads(request.data)
-    noteId = data['noteId']
-    note = Note.query.get(noteId)
+    todoId = data['noteId']
+    todo = Todo.query.get(todoId)
 
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+    if todo:
+        if todo.user_id == current_user.id:
+            db.session.delete(todo)
             db.session.commit()
             return jsonify({})
         

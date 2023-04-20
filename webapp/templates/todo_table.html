@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Data</th>
+            <th>Title</th>
             <th>Date</th>
             <th>Action</th>
         </tr>
@@ -11,8 +11,8 @@
         {% for todo in user.todos %}
             <tr>
                 <td>{{ todo.id }}</td>
-                <td>{{ todo.data }}</td>
-                <td style="word-wrap: break-word;">{{ todo.date }}</td>
+                <td>{{ todo.title }}</td>
+                <td style="word-wrap: break-word;">{{ todo.upt_date }}</td>
                 <td>
                     <a href="#" class="btn mb3 bi bi-trash", onclick="deleteTodo( '{{ todo.id }}' )"></a>
                     <a href="#" class="btn mb3 bi bi-pencil-square", onclick="deleteTodo( '{{ todo.id }}' )"></a>
