@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>This is the {% block title %}Notes Page{% endblock %}!</h1>
+    <hr/>
+    <div class="container text">
+        <div class="row align-items-start">
+            <div class="col-md-4">
+                <form class="row g-3" method="POST">
+                    <div class="col-12">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" name="note" rows="4"></textarea>
+                    </div>
+                    <div class="col-12" align="center">
+                        <button type="submit" class="btn btn-primary">Add Note</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+
+            </div>
+        </div>
+    </div>
+     
+{% endblock %}

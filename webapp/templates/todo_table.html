@@ -1,0 +1,36 @@
+<table id="table" class="table table-striped table-bordered" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for todo in user.todos %}
+            <tr>
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.data }}</td>
+                <td style="word-wrap: break-word;">{{ todo.date }}</td>
+                <td>
+                    <a href="#" class="btn mb3 bi bi-trash", onclick="deleteTodo( '{{ todo.id }}' )"></a>
+                    <a href="#" class="btn mb3 bi bi-pencil-square", onclick="deleteTodo( '{{ todo.id }}' )"></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% block javascript %}
+<script type = "text/javascript">
+        function deleteTodo(todoId) {
+            fetch("/delete-todo", {
+                method: "POST",
+                body: JSON.stringify({ todoId: todoId }),
+            }).then((_res) => {
+                window.location.href = "/";
+            });
+        }
+    </script>
+{% endblock %}
